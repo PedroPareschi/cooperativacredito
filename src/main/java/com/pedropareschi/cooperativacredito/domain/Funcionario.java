@@ -1,5 +1,6 @@
 package com.pedropareschi.cooperativacredito.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -7,7 +8,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.validator.constraints.Currency;
 import org.hibernate.validator.constraints.br.CPF;
 
 import java.util.List;
@@ -20,7 +20,7 @@ import java.util.Objects;
 @Setter
 public class Funcionario {
     @Id
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank
     private String nome;
@@ -28,18 +28,17 @@ public class Funcionario {
     @NotBlank
     private String cpf;
     @NotNull
-    @Currency(value = "BRL")
     private double salario;
     @NotNull
     private boolean temNomeLimpo;
-    @NotNull
     @ManyToOne
     @JoinColumn(name = "id_empresa")
     private Empresa empresa;
     @OneToMany(mappedBy = "funcionario")
+    @JsonIgnore
     private List<Contrato> contratos;
 
-    public double getMargemConsignada(){
+    public double getMargemConsignada() {
         return this.salario * 0.3;
     }
 

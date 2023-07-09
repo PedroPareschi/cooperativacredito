@@ -20,7 +20,7 @@ import java.util.Objects;
 @Setter
 public class Empresa {
     @Id
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank
     private String nome;

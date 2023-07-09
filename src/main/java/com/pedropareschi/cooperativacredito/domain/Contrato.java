@@ -18,7 +18,7 @@ import java.util.Objects;
 @Setter
 public class Contrato {
     @Id
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
     private double taxaDeJuros;
