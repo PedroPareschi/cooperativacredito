@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -23,7 +24,11 @@ public class Contrato {
     @NotNull
     private double taxaDeJuros;
     @NotNull
-    private Date prazoFinal;
+    private Date dataContrato;
+    @NotNull
+    private double valorPrimeiraParcela;
+    @NotNull
+    private int mesesParcelamento;
     @NotNull
     @ManyToOne
     @JoinColumn(name = "id_funcionario")
@@ -43,11 +48,18 @@ public class Contrato {
         if (this == o) return true;
         if (!(o instanceof Contrato)) return false;
         Contrato contrato = (Contrato) o;
-        return Double.compare(contrato.taxaDeJuros, taxaDeJuros) == 0 && Objects.equals(id, contrato.id) && Objects.equals(prazoFinal, contrato.prazoFinal) && Objects.equals(funcionario, contrato.funcionario) && Objects.equals(vendedor, contrato.vendedor) && Objects.equals(pagamentos, contrato.pagamentos) && Objects.equals(bemDuravel, contrato.bemDuravel);
+        return Double.compare(contrato.taxaDeJuros, taxaDeJuros) == 0 && Double.compare(contrato.valorPrimeiraParcela, valorPrimeiraParcela) == 0 && mesesParcelamento == contrato.mesesParcelamento && Objects.equals(id, contrato.id) && Objects.equals(dataContrato, contrato.dataContrato) && Objects.equals(funcionario, contrato.funcionario) && Objects.equals(vendedor, contrato.vendedor) && Objects.equals(pagamentos, contrato.pagamentos) && Objects.equals(bemDuravel, contrato.bemDuravel);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, taxaDeJuros, prazoFinal, funcionario, vendedor, pagamentos, bemDuravel);
+        return Objects.hash(id, taxaDeJuros, dataContrato, valorPrimeiraParcela, mesesParcelamento, funcionario, vendedor, pagamentos, bemDuravel);
+    }
+
+    public Date getPrazoFinal() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(dataContrato);
+        calendar.add(Calendar.MONTH, mesesParcelamento);
+        return calendar.getTime();
     }
 }

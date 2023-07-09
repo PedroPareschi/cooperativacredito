@@ -30,13 +30,6 @@ public class ContratoService {
         return contratoRepository.save(contrato);
     }
 
-    public Contrato updateContrato(Contrato contrato) {
-        if (!contratoRepository.existsById(contrato.getId())) {
-            throw new ResourceNotFoundException("Contrato não encontrado com id: " + contrato.getId());
-        }
-        return contratoRepository.save(contrato);
-    }
-
     public void deleteContrato(Long id) {
         if (!contratoRepository.existsById(id)) {
             throw new ResourceNotFoundException("Contrato não encontrado com id: " + id);

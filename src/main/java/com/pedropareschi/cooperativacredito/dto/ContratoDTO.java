@@ -4,15 +4,13 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
-
 @Getter
 @Setter
 public class ContratoDTO {
     @NotNull
     private double taxaDeJuros;
     @NotNull
-    private Date prazoFinal;
+    private int mesesParcelamento;
     @NotNull
     private Long funcionarioId;
     @NotNull

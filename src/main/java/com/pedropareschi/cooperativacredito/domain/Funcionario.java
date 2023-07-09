@@ -30,6 +30,7 @@ public class Funcionario {
     private String cpf;
     @NotNull
     private double salario;
+    private double totalDevido;
     @NotNull
     private boolean temNomeLimpo;
     @ManyToOne

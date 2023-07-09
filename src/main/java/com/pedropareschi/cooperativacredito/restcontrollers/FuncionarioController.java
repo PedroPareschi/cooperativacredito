@@ -64,6 +64,7 @@ public class FuncionarioController {
         funcionario.setCpf(funcionarioDTO.getCpf());
         funcionario.setSalario(funcionarioDTO.getSalario());
         funcionario.setTemNomeLimpo(funcionarioDTO.isTemNomeLimpo());
+        funcionario.setTotalDevido(0);
         Empresa empresa = empresaService.getEmpresaById(funcionarioDTO.getEmpresaId());
         funcionario.setEmpresa(empresa);
         return funcionario;
