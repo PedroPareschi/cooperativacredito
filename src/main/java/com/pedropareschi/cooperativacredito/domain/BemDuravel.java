@@ -1,5 +1,6 @@
 package com.pedropareschi.cooperativacredito.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,6 +21,7 @@ public class BemDuravel {
     private String nome;
     private double valor;
     @OneToOne(mappedBy = "bemDuravel")
+    @JsonIgnore
     private Contrato contrato;
 
     @Override
