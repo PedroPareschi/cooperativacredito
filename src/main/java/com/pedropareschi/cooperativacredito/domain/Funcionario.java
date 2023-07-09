@@ -18,6 +18,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @Getter
 @Setter
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = "cpf"))
 public class Funcionario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

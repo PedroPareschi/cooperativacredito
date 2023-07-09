@@ -1,11 +1,14 @@
 package com.pedropareschi.cooperativacredito.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.validator.constraints.br.CPF;
 
 import java.util.List;
 import java.util.Objects;
@@ -15,13 +18,20 @@ import java.util.Objects;
 @AllArgsConstructor
 @Getter
 @Setter
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = "cpf"))
 public class Vendedor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank
+    private String nome;
+    @CPF
+    @NotBlank
+    private String cpf;
     @NotNull
     private double comissao;
     @OneToMany(mappedBy = "vendedor")
+    @JsonIgnore
     private List<Contrato> contratos;
 
     @Override

@@ -18,6 +18,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @Getter
 @Setter
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = "cnpj"))
 public class Empresa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
