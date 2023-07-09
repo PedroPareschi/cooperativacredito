@@ -1,5 +1,6 @@
 package com.pedropareschi.cooperativacredito.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -28,6 +29,7 @@ public class Empresa {
     private String cnpj;
     @NotNull
     private double comissao;
+    @JsonIgnore
     @OneToMany(mappedBy = "empresa")
     private List<Funcionario> funcionarios;
 
